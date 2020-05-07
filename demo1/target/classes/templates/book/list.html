@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<h3>我的喜爱</h3>
 <table border="1">
     <tr>
         <th>序列号</th>
@@ -18,18 +17,15 @@
         <td th:text="${book.getBook_name()}"></td>
         <td th:text="${book.getDescription()}"></td>
         <td>
-            <a th:href="@{'Book/'+${book.getId()}}">
-                <button>删除</button>
-            </a>
+            <form th:action="@{${session.user.getId()}+'/Book/'+${book.getId()}}" method="post">
+                <input type="submit" value="添加">
+            </form>
         </td>
     </tr>
+    <a th:href="@{${session.user.getId()+'/Book'}}">
+        <button>我的喜爱</button>
+    </a>
 </table>
-<a href="/Book">
-    <button>查看总书籍</button>
-</a>
-<br>
-<a th:href="@{/main}">
-    <button>返回首页</button>
-</a>
+<h6 style="color: red"  th:text="${msg}"></h6>
 </body>
 </html>
